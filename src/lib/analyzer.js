@@ -249,7 +249,7 @@ Respond ONLY with a valid JSON object (no markdown fences, no preamble):
   ]
 }`;
 
-  const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyDraHTfzg_mpS33XVG7lsDBo90WqmLxeqo', {
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
