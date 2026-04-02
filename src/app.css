@@ -1,0 +1,201 @@
+/* ── Neural Scribe · Medical Doodle Theme ── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Medical Doodle Palette */
+  --primary:     #d8648b;      /* Playful pink */
+  --primary-light: #faaaaa;    /* Light pink */
+  --primary-pale: #f5ff9f;     /* Pale pink */
+  
+  --secondary:   #4ECDC4;      /* Teal/Mint */
+  --secondary-light: #7FE0D6;  /* Light teal */
+  --secondary-pale: #D4F7F5;   /* Pale teal */
+  
+  --accent:      #FFD93D;      /* Yellow */
+  --accent-light: #FFEB99;     /* Light yellow */
+  --accent-pale: #FFF9E6;      /* Pale yellow */
+  
+  --info:        #6C5CE7;      /* Purple */
+  --info-light:  #A29BFE;      /* Light purple */
+  --info-pale:   #E8E4F7;      /* Pale purple */
+  
+  --success:     #55EFC4;      /* Mint green */
+  --danger:      #FF7675;      /* Red */
+  --warning:     #FDCB6E;      /* Orange */
+  
+  --ink:         #2D3436;      /* Dark gray */
+  --ink-soft:    #636E72;      /* Medium gray */
+  --ink-muted:   #95A5A6;      /* Light gray */
+  --ink-ghost:   #BDC3C7;      /* Very light gray */
+  
+  --white:       #FFFFFF;
+  --surface:     #F8F9FA;      /* Off white */
+  --surface-2:   #EEF1F5;      /* Light background */
+  --surface-3:   #DFE4E9;      /* Medium background */
+
+  /* Typography */
+  --font-display: 'Comic Sans MS', 'Trebuchet MS', cursive, sans-serif;
+  --font-ui:      'Segoe UI', 'Roboto', system-ui, sans-serif;
+
+  /* Spacing */
+  --r-sm:  8px;
+  --r-md:  12px;
+  --r-lg:  16px;
+  --r-xl:  24px;
+
+  /* Shadows - softer for doodle style */
+  --shadow-xs: 0 2px 4px rgba(45,52,54,.08);
+  --shadow-sm: 0 4px 12px rgba(45,52,54,.12);
+  --shadow-md: 0 8px 24px rgba(45,52,54,.15);
+  --shadow-lg: 0 16px 40px rgba(45,52,54,.18);
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-ui);
+  background: linear-gradient(135deg, #FFF9E6 0%, #F8F9FA 50%, #D4F7F5 100%);
+  color: var(--ink);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-ui);
+  border: none;
+  outline: none;
+}
+
+textarea, select, input {
+  font-family: var(--font-ui);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--surface-2); }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-light); }
+
+/* Selection */
+::selection { background: var(--primary-pale); color: var(--primary); }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25%      { transform: rotate(-2deg); }
+  75%      { transform: rotate(2deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-12px); }
+}
+
+/* ── Doodle decorations ── */
+.doodle-element {
+  position: absolute;
+  opacity: 0.15;
+  pointer-events: none;
+  animation: float 6s ease-in-out infinite;
+}
+
+.doodle-small { font-size: 48px; }
+.doodle-medium { font-size: 72px; }
+.doodle-large { font-size: 120px; }
+
+/* Medical doodle styles */
+.doodle-heartbeat {
+  animation: wiggle 1s ease-in-out infinite;
+}
+
+.doodle-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Border styles with doodle feel */
+.doodle-border {
+  border: 2px solid;
+  border-radius: 12px;
+  position: relative;
+}
+
+.doodle-border::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px dashed;
+  border-color: inherit;
+  border-radius: 16px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Responsive utilities */
+@media (max-width: 1024px) {
+  :root {
+    --r-sm: 6px;
+    --r-md: 10px;
+    --r-lg: 14px;
+    --r-xl: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    font-size: 15px;
+  }
+  
+  h1, h2, h3, h4 {
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    font-size: 14px;
+    --r-sm: 6px;
+    --r-md: 8px;
+    --r-lg: 12px;
+    --r-xl: 16px;
+  }
+}
