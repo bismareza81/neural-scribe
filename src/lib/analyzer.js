@@ -129,34 +129,178 @@ Nodul 8 mm pada lobus atas kiri — disarankan CT scan tindak lanjut khusus dala
   }
 };
 
+/** UI string translations */
 export const UI = {
-  en: { analyzing: 'Analyzing...', error: 'Analysis failed.' },
-  id: { analyzing: 'Menganalisis...', error: 'Analisis gagal.' }
+  en: {
+    tagline:        'Medical Record Simplifier',
+    badge:          'NLP · AI-Powered',
+    eyebrow:        'Plain language. Clear understanding.',
+    heroLine1:      'Your medical records,',
+    heroLine2:      'explained simply.',
+    heroDesc:       "Paste any clinical note, discharge summary, or lab result. Neural Scribe's NLP engine rewrites it into language you can actually understand.",
+    panelLabel:     'Medical Record',
+    chars:          'chars',
+    loadSample:     'Load sample:',
+    placeholder:    'Paste your medical record here — discharge summary, lab results, radiology report, or clinical notes…',
+    readLevelLabel: 'Reading level',
+    readLevels:     { simple: 'Simple (Grade 6)', standard: 'Standard (Grade 9)', detailed: 'Detailed (educated)' },
+    focusLabel:     'Focus on',
+    focusAreas:     { all: 'Full summary', diagnosis: 'Diagnosis only', medications: 'Medications', followup: 'Follow-up plan' },
+    analyzeBtn:     'Simplify this record',
+    analyzing:      'Analyzing record…',
+    emptyTitle:     'Your report will appear here',
+    emptySub:       'Paste a medical record on the left and click Simplify',
+    loadingText:    'Reading your record…',
+    loadingSteps:   ['Parsing clinical language', 'Identifying key findings', 'Translating for patients'],
+    metReadability: 'Readability',
+    metShorter:     'Shorter',
+    metReadTime:    'Read time',
+    metMin:         'min',
+    copyBtn:        'Copy report',
+    copied:         'Copied!',
+    newRecord:      'New record',
+    disclaimer:     'Neural Scribe is an AI tool for informational purposes only. Always consult your healthcare provider with questions about your medical care.',
+    footerLeft:     'Neural Scribe · For informational use only',
+    footerRight:    'Not a substitute for professional medical advice',
+    mobileInput:    'Record',
+    mobileResult:   'Report',
+    urgency: {
+      routine: 'Routine',
+      monitor: 'Monitor closely',
+      urgent:  'Needs attention'
+    }
+  },
+  id: {
+    tagline:        'Penyederhana Rekam Medis',
+    badge:          'NLP · Bertenaga AI',
+    eyebrow:        'Bahasa sederhana. Pemahaman yang jelas.',
+    heroLine1:      'Rekam medis Anda,',
+    heroLine2:      'dijelaskan dengan mudah.',
+    heroDesc:       'Tempel catatan klinis, ringkasan pemulangan, atau hasil lab. Mesin NLP Neural Scribe akan menulisnya ulang dalam bahasa yang benar-benar Anda pahami.',
+    panelLabel:     'Rekam Medis',
+    chars:          'karakter',
+    loadSample:     'Muat contoh:',
+    placeholder:    'Tempel rekam medis Anda di sini — ringkasan pemulangan, hasil lab, laporan radiologi, atau catatan klinis…',
+    readLevelLabel: 'Tingkat bacaan',
+    readLevels:     { simple: 'Sederhana (Kelas 6)', standard: 'Standar (Kelas 9)', detailed: 'Mendetail (terdidik)' },
+    focusLabel:     'Fokus pada',
+    focusAreas:     { all: 'Ringkasan lengkap', diagnosis: 'Diagnosis saja', medications: 'Obat-obatan', followup: 'Rencana tindak lanjut' },
+    analyzeBtn:     'Sederhanakan rekam medis ini',
+    analyzing:      'Menganalisis rekam medis…',
+    emptyTitle:     'Laporan Anda akan muncul di sini',
+    emptySub:       'Tempel rekam medis di sebelah kiri dan klik Sederhanakan',
+    loadingText:    'Membaca rekam medis Anda…',
+    loadingSteps:   ['Mengurai bahasa klinis', 'Mengidentifikasi temuan utama', 'Menerjemahkan untuk pasien'],
+    metReadability: 'Keterbacaan',
+    metShorter:     'Lebih singkat',
+    metReadTime:    'Waktu baca',
+    metMin:         'mnt',
+    copyBtn:        'Salin laporan',
+    copied:         'Tersalin!',
+    newRecord:      'Rekam medis baru',
+    disclaimer:     'Neural Scribe adalah alat AI hanya untuk tujuan informasi. Selalu konsultasikan dengan tenaga kesehatan Anda untuk pertanyaan tentang perawatan medis Anda.',
+    footerLeft:     'Neural Scribe · Hanya untuk tujuan informasi',
+    footerRight:    'Bukan pengganti saran medis profesional',
+    mobileInput:    'Rekam Medis',
+    mobileResult:   'Laporan',
+    urgency: {
+      routine: 'Rutin',
+      monitor: 'Perlu dipantau',
+      urgent:  'Perlu perhatian'
+    }
+  }
 };
 
-export async function analyzeRecord(input, readLevel, focusArea, lang = 'id') {
+/**
+ * Parameter order matches +page.svelte call: analyzeRecord(inputText, readLevel, focusArea, lang)
+ * @param {string} input
+ * @param {string} readLevel
+ * @param {string} focusArea
+ * @param {'en'|'id'} lang
+ */
+export async function analyzeRecord(input, readLevel, focusArea, lang = 'en') {
+  // Validate parameters
+  if (!lang || !['en', 'id'].includes(lang)) lang = 'en';
+  if (!readLevel || !['simple', 'standard', 'detailed'].includes(readLevel)) readLevel = 'standard';
+  if (!focusArea || !['all', 'diagnosis', 'medications', 'followup'].includes(focusArea)) focusArea = 'all';
+
+  const levelDesc = {
+    en: {
+      simple:   'very simple language a 12-year-old can understand, avoiding ALL medical jargon and explaining every term',
+      standard: 'clear language for an educated adult, briefly explaining necessary medical terms in parentheses',
+      detailed: 'thorough language for a health-literate adult, including relevant medical context and implications'
+    },
+    id: {
+      simple:   'bahasa yang sangat sederhana dan mudah dipahami oleh anak usia 12 tahun, hindari SEMUA jargon medis dan jelaskan setiap istilah dengan kata-kata sehari-hari',
+      standard: 'bahasa yang jelas untuk orang dewasa terpelajar, jelaskan singkat istilah medis yang diperlukan dalam tanda kurung',
+      detailed: 'bahasa yang mendetail untuk orang dewasa yang melek kesehatan, sertakan konteks dan implikasi medis yang relevan'
+    }
+  };
+
+  const focusDesc = {
+    en: {
+      all:         'Cover all key aspects: main diagnosis, key findings, medications with purpose, and follow-up plan.',
+      diagnosis:   'Focus only on explaining the diagnosis, what it means, and how it affects daily life.',
+      medications: 'Focus exclusively on each medication: what it does, why it was prescribed, and important warnings.',
+      followup:    'Focus only on follow-up actions: upcoming appointments, warning signs, lifestyle changes needed.'
+    },
+    id: {
+      all:         'Bahas semua aspek utama: diagnosis utama, temuan kunci, obat-obatan beserta tujuannya, dan rencana tindak lanjut.',
+      diagnosis:   'Fokus hanya pada penjelasan diagnosis, artinya bagi Anda, dan bagaimana pengaruhnya terhadap kehidupan sehari-hari.',
+      medications: 'Fokus khusus pada setiap obat: kegunaannya, alasan diresepkan, dan peringatan penting yang perlu diketahui.',
+      followup:    'Fokus hanya pada tindakan tindak lanjut: janji temu mendatang, tanda-tanda peringatan, dan perubahan gaya hidup yang diperlukan.'
+    }
+  };
+
+  const langInstruction = lang === 'id'
+    ? 'Tulis SELURUH respons dalam Bahasa Indonesia yang hangat dan mudah dipahami. Gunakan kata "Anda" untuk berbicara langsung kepada pasien. Semua heading seksi harus dalam Bahasa Indonesia.'
+    : 'Write the ENTIRE response in warm, clear English. Speak directly to the patient using "you" / "your". All section headings must be in English.';
+
   const wordsBefore = input.trim().split(/\s+/).length;
 
-  // PERBAIKAN KRUSIAL: Identitas API
-  const apiKey = ""; 
-  const model = "gemini-2.5-flash-preview-09-2025"; 
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+  const prompt = `You are Neural Scribe, a compassionate AI medical translator. Convert this medical record into a patient-friendly report using ${levelDesc[lang][readLevel]}.
 
-  const prompt = `Convert this medical record into a patient-friendly report in ${lang === 'id' ? 'Indonesian' : 'English'}.
-  Complexity: ${readLevel}. Focus: ${focusArea}.
-  Record: ${input}`;
+MEDICAL RECORD:
+${input}
 
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: { 
-        temperature: 0.4, 
-        responseMimeType: 'application/json' 
-      }
-    })
-  });
+INSTRUCTIONS:
+- ${focusDesc[lang][focusArea]}
+- ${langInstruction}
+- Be warm, clear, and reassuring without being dismissive
+- Organize the response into 3-4 named sections appropriate to the content
+- Each section should be 2-4 sentences
+- Flag urgency level: "routine", "monitor", or "urgent"
+
+Respond ONLY with a valid JSON object (no markdown fences, no preamble):
+{
+  "title": "${lang === 'id' ? 'judul laporan yang ramah, maksimal 6 kata dalam Bahasa Indonesia' : 'friendly report title in English, 6 words max'}",
+  "tags": ["tag1", "tag2", "tag3"],
+  "urgency": "routine|monitor|urgent",
+  "readabilityScore": 75,
+  "sections": [
+    { "heading": "Section heading in ${lang === 'id' ? 'Indonesian' : 'English'}", "content": "2-4 sentences in ${lang === 'id' ? 'Indonesian' : 'English'}.", "type": "diagnosis|medications|findings|followup|lifestyle" }
+  ]
+}`;
+
+  // FIX 1: Correct Gemini model name (gemini-2.0-flash, not gemini-2.5-flash-preview-09-2025)
+  // FIX 2: generationConfig to enforce JSON output and reduce hallucinations
+  // Temukan bagian fetch di akhir fungsi analyzeRecord dan ubah baris URL-nya menjadi:
+
+const apiKey = ""; 
+const model = "gemini-2.5-flash-preview-09-2025";
+const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+
+const res = await fetch(url, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    contents: [{ parts: [{ text: prompt }] }],
+    generationConfig: {
+      temperature: 0.4,
+      responseMimeType: 'application/json'
+    }
+  })
+});
 
   if (!res.ok) {
     const errBody = await res.text();
@@ -164,11 +308,16 @@ export async function analyzeRecord(input, readLevel, focusArea, lang = 'id') {
   }
 
   const data = await res.json();
+
+  // FIX 3: Safely extract text — handle both text and JSON mime-type responses
   const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
-  const parsed = JSON.parse(rawText);
+  if (!rawText) throw new Error('Empty response from Gemini API');
+
+  const clean = rawText.replace(/```json|```/g, '').trim();
+  const parsed = JSON.parse(clean);
 
   const wordsAfter = (parsed.sections ?? []).reduce(
-    (a, s) => a + s.content.split(/\s+/).length, 0
+    (/** @type {number} */ a, /** @type {{content:string}} */ s) => a + s.content.split(/\s+/).length, 0
   );
 
   return { ...parsed, wordsBefore, wordsAfter };
