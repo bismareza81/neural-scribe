@@ -212,29 +212,28 @@ export const UI = {
 };
 
 /**
+ * Parameter order matches +page.svelte call: analyzeRecord(inputText, readLevel, focusArea, lang)
  * @param {string} input
  * @param {string} readLevel
  * @param {string} focusArea
  * @param {'en'|'id'} lang
  */
-// @ts-nocheck
-
-// ... (Biarkan SAMPLES dan UI tetap seperti aslinya)
-
-export async function analyzeRecord(input, lang, readLevel, focusArea) {
+export async function analyzeRecord(input, readLevel, focusArea, lang = 'en') {
+  // Validate parameters
   if (!lang || !['en', 'id'].includes(lang)) lang = 'en';
   if (!readLevel || !['simple', 'standard', 'detailed'].includes(readLevel)) readLevel = 'standard';
   if (!focusArea || !['all', 'diagnosis', 'medications', 'followup'].includes(focusArea)) focusArea = 'all';
+
   const levelDesc = {
     en: {
-      simple:   'Grade 6 reading level',
-      standard: 'Grade 9 reading level',
-      detailed: 'College reading level'
+      simple:   'very simple language a 12-year-old can understand, avoiding ALL medical jargon and explaining every term',
+      standard: 'clear language for an educated adult, briefly explaining necessary medical terms in parentheses',
+      detailed: 'thorough language for a health-literate adult, including relevant medical context and implications'
     },
     id: {
-      simple:   'Tingkat pembacaan Kelas 6',
-      standard: 'Tingkat pembacaan Kelas 9',
-      detailed: 'Tingkat pembacaan perguruan tinggi'
+      simple:   'bahasa yang sangat sederhana dan mudah dipahami oleh anak usia 12 tahun, hindari SEMUA jargon medis dan jelaskan setiap istilah dengan kata-kata sehari-hari',
+      standard: 'bahasa yang jelas untuk orang dewasa terpelajar, jelaskan singkat istilah medis yang diperlukan dalam tanda kurung',
+      detailed: 'bahasa yang mendetail untuk orang dewasa yang melek kesehatan, sertakan konteks dan implikasi medis yang relevan'
     }
   };
 
@@ -283,29 +282,42 @@ Respond ONLY with a valid JSON object (no markdown fences, no preamble):
   ]
 }`;
 
-  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [
-        {
-          parts: [
-            {
-              text: prompt
-            }
-          ]
+  // FIX 1: Correct Gemini model name (gemini-2.0-flash, not gemini-2.5-flash-preview-09-2025)
+  // FIX 2: generationConfig to enforce JSON output and reduce hallucinations
+  const res = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [
+          {
+            parts: [{ text: prompt }]
+          }
+        ],
+        generationConfig: {
+          temperature: 0.4,
+          responseMimeType: 'application/json'   // tells Gemini to return pure JSON
         }
-      ]
-    })
-  });
+      })
+    }
+  );
 
-  if (!res.ok) throw new Error(`API error: ${res.status}`);
+  if (!res.ok) {
+    const errBody = await res.text();
+    throw new Error(`API error ${res.status}: ${errBody}`);
+  }
 
   const data = await res.json();
-  const raw = data.candidates[0].content.parts[0].text.replace(/```json|```/g, '').trim();
-  const parsed = JSON.parse(raw);
 
-  const wordsAfter = parsed.sections.reduce(
+  // FIX 3: Safely extract text — handle both text and JSON mime-type responses
+  const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
+  if (!rawText) throw new Error('Empty response from Gemini API');
+
+  const clean = rawText.replace(/```json|```/g, '').trim();
+  const parsed = JSON.parse(clean);
+
+  const wordsAfter = (parsed.sections ?? []).reduce(
     (/** @type {number} */ a, /** @type {{content:string}} */ s) => a + s.content.split(/\s+/).length, 0
   );
 
