@@ -6,7 +6,7 @@ export const SAMPLES = {
     label: { en: 'Discharge Summary', id: 'Ringkasan Pemulangan' },
     icon: '🏥',
     text: `DISCHARGE SUMMARY
-Pasien: Bobby Hermawan | DOB: 1958-03-12 | MRN: 4820193
+Pasien: Bobby Hermawanto | DOB: 1958-03-12 | MRN: 4820193
 Masuk: 2026-03-18 | Keluar: 2026-03-22
 
 DIAGNOSIS UTAMA:
