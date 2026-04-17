@@ -286,9 +286,14 @@ Respond ONLY with a valid JSON object (no markdown fences, no preamble):
   // FIX 2: generationConfig to enforce JSON output and reduce hallucinations
   // Temukan bagian fetch di akhir fungsi analyzeRecord dan ubah baris URL-nya menjadi:
 
-const apiKey = ""; 
-const model = "gemini-2.5-flash-preview-09-2025";
-const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY; 
+  
+  if (!apiKey) {
+    throw new Error("API Key tidak ditemukan! Periksa file .env Anda.");
+  }
+
+  const model = "gemini-2.0-flash"; 
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
 const res = await fetch(url, {
   method: 'POST',
