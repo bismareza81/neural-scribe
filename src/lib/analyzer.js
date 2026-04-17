@@ -6,92 +6,126 @@ export const SAMPLES = {
     label: { en: 'Discharge Summary', id: 'Ringkasan Pemulangan' },
     icon: '🏥',
     text: `DISCHARGE SUMMARY
-Patient: John Smith | DOB: 1958-03-12 | MRN: 4820193
-Admission: 2026-03-18 | Discharge: 2026-03-22
+Pasien: Bobby Hermawan | DOB: 1958-03-12 | MRN: 4820193
+Masuk: 2026-03-18 | Keluar: 2026-03-22
 
-PRIMARY DIAGNOSIS: Acute decompensated heart failure with preserved ejection fraction (HFpEF), NYHA Class III.
+DIAGNOSIS UTAMA:
 
-SECONDARY DIAGNOSES: Type 2 diabetes mellitus, poorly controlled (HbA1c 9.2%); hypertension; stage 3 chronic kidney disease (eGFR 42 mL/min/1.73m²).
+Gagal jantung dekompensasi akut dengan fraksi ejeksi terjaga (Heart Failure with Preserved Ejection Fraction / HFpEF), Kelas III menurut NYHA.
 
-HOSPITAL COURSE: Mr. Smith presented with progressive dyspnea on exertion, orthopnea, bilateral lower extremity pitting edema (3+), and weight gain of 6kg over 2 weeks. BNP on admission was 1,840 pg/mL. Echo revealed EF of 58%, Grade II diastolic dysfunction, mild-moderate mitral regurgitation. IV furosemide diuresis achieved net negative fluid balance of 4.2L. Transitioned to oral furosemide 80mg BID. Endocrinology consulted for hyperglycemia management.
+DIAGNOSIS SEKUNDER:
+Diabetes melitus tipe 2, kontrol buruk (HbA1c 9,2%)
+Hipertensi
+Penyakit ginjal kronis stadium 3 (eGFR 42 mL/menit/1,73m²)
+PERJALANAN PERAWATAN (HOSPITAL COURSE):
 
-MEDICATIONS AT DISCHARGE:
-- Furosemide 80mg PO BID
-- Carvedilol 12.5mg PO BID
-- Lisinopril 10mg PO daily (held due to CKD; restart when Cr < 1.8)
-- Metformin 500mg PO BID
-- Insulin glargine 18 units SQ QHS
-- Spironolactone 25mg PO daily
+Bapak Bobby datang dengan keluhan sesak napas yang semakin memburuk saat aktivitas, ortopnea (sesak saat berbaring), edema pitting bilateral pada tungkai bawah (derajat 3+), serta kenaikan berat badan 6 kg dalam 2 minggu.
 
-FOLLOW-UP: Cardiology in 1 week. PCP in 3 days. Daily weights; return to ED if weight increases >2kg in 24 hrs.`
+Kadar BNP saat masuk adalah 1.840 pg/mL.
+Pemeriksaan ekokardiografi menunjukkan fraksi ejeksi (EF) 58%, disfungsi diastolik derajat II, serta regurgitasi katup mitral ringan hingga sedang.
+
+Terapi diuresis dengan furosemid intravena menghasilkan keseimbangan cairan negatif bersih sebesar 4,2 liter.
+Pasien kemudian dialihkan ke furosemid oral 80 mg dua kali sehari.
+
+Konsultasi dengan bagian endokrinologi dilakukan untuk penanganan hiperglikemia.
+
+OBAT SAAT PULANG:
+Furosemid 80 mg per oral, 2 kali sehari
+Carvedilol 12,5 mg per oral, 2 kali sehari
+Lisinopril 10 mg per oral, 1 kali sehari (ditunda karena penyakit ginjal kronis; dapat dimulai kembali jika kreatinin < 1,8)
+Metformin 500 mg per oral, 2 kali sehari
+Insulin glargine 18 unit subkutan setiap malam (QHS)
+Spironolakton 25 mg per oral, 1 kali sehari
+TINDAK LANJUT:
+Kontrol ke spesialis jantung dalam 1 minggu
+Kontrol ke dokter umum (PCP) dalam 3 hari
+Pemantauan berat badan harian
+Segera ke IGD jika berat badan naik >2 kg dalam 24 jam atau jika mengalami sesak napas yang memburuk.`
   },
   lab: {
     label: { en: 'Lab Results', id: 'Hasil Laboratorium' },
     icon: '🧪',
     text: `LABORATORY REPORT
-Patient: Maria Santos | Accession: LAB-2026-093842
-Collection: 2026-03-28 09:14
+Pasien: Mariana | Nomor Akses: LAB-2026-093842
+Waktu Pengambilan: 28-03-2026 09:14
 
-COMPLETE METABOLIC PANEL:
-Sodium: 138 mEq/L [136-145] — NORMAL
-Potassium: 3.2 mEq/L [3.5-5.0] — LOW (*)
-Chloride: 101 mEq/L [98-107] — NORMAL
-CO2: 29 mEq/L [22-29] — NORMAL
-BUN: 24 mg/dL [7-20] — HIGH (*)
-Creatinine: 1.1 mg/dL [0.6-1.1] — NORMAL
-eGFR: 68 mL/min/1.73m² [>60] — NORMAL
-Glucose: 178 mg/dL [70-99] — HIGH (*)
-AST: 52 U/L [10-40] — HIGH (*)
-ALT: 68 U/L [7-40] — HIGH (*)
-
-LIPID PANEL:
-Total Cholesterol: 241 mg/dL [<200] — HIGH
-LDL: 158 mg/dL [<100] — HIGH
-HDL: 38 mg/dL [>50] — LOW
-Triglycerides: 312 mg/dL [<150] — HIGH
-
-HbA1c: 8.4% [<5.7%] — HIGH (poorly controlled)
-TSH: 1.8 mIU/L [0.4-4.0] — NORMAL`
+PANEL METABOLIK LENGKAP:
+Natrium: 138 mEq/L [136–145] — NORMAL
+Kalium: 3,2 mEq/L [3,5–5,0] — RENDAH (*)
+Klorida: 101 mEq/L [98–107] — NORMAL
+CO₂: 29 mEq/L [22–29] — NORMAL
+BUN (Blood Urea Nitrogen): 24 mg/dL [7–20] — TINGGI (*)
+Kreatinin: 1,1 mg/dL [0,6–1,1] — NORMAL
+eGFR: 68 mL/menit/1,73m² [>60] — NORMAL
+Glukosa: 178 mg/dL [70–99] — TINGGI (*)
+AST: 52 U/L [10–40] — TINGGI (*)
+ALT: 68 U/L [7–40] — TINGGI (*)
+PROFIL LIPID:
+Kolesterol Total: 241 mg/dL [<200] — TINGGI
+LDL: 158 mg/dL [<100] — TINGGI
+HDL: 38 mg/dL [>50] — RENDAH
+Trigliserida: 312 mg/dL [<150] — TINGGI
+PEMERIKSAAN TAMBAHAN:
+HbA1c: 8,4% [<5,7%] — TINGGI (kontrol gula darah buruk)
+TSH: 1,8 mIU/L [0,4–4,0] — NORMAL`
   },
   cardio: {
     label: { en: 'Cardiology Note', id: 'Catatan Kardiologi' },
     icon: '❤️',
-    text: `CARDIOLOGY CONSULTATION NOTE
-Date: 2026-03-30 | Attending: Dr. Priya Rajan, MD, FACC
+    text: `Catatan Konsultasi Kardiologi
+Pasien: Supardjo | DOB: 1971-11-05 | MRN: 5820391
+Tanggal: 30-03-2026 | Dokter Penanggung Jawab: Dr. Priya Rajan, MD, FACC
 
-REASON FOR CONSULTATION: Evaluation of exertional chest pain and palpitations.
+ALASAN KONSULTASI: Evaluasi nyeri dada saat aktivitas (exertional chest pain) dan palpitasi.
 
-HISTORY: 55-year-old male with HTN, hyperlipidemia, and 30 pack-year smoking history presenting with 3-month history of substernal chest pressure radiating to left arm, reproducible with moderate exertion (climbing 1 flight of stairs), relieved with rest within 5 minutes. Associated with occasional palpitations and mild dyspnea. No syncope, no orthopnea.
+RIWAYAT: Pria usia 55 tahun dengan riwayat hipertensi (HTN), hiperlipidemia, dan riwayat merokok 30 pack-year, datang dengan keluhan tekanan di dada bagian tengah (substernal) selama 3 bulan yang menjalar ke lengan kiri.
+Keluhan muncul saat aktivitas sedang (misalnya naik 1 lantai tangga), dan mereda dengan istirahat dalam waktu 5 menit.
+Disertai palpitasi sesekali dan sesak napas ringan.
+Tidak ada riwayat sinkop (pingsan) maupun ortopnea.
 
-EKG: Normal sinus rhythm, rate 74 bpm. Left ventricular hypertrophy pattern (Sokolow-Lyon criteria met). Nonspecific ST changes V4-V6. No acute ischemic changes.
+EKG: Irama sinus normal, frekuensi 74 denyut per menit.
+Terdapat pola hipertrofi ventrikel kiri (memenuhi kriteria Sokolow-Lyon).
+Perubahan ST nonspesifik pada sadapan V4–V6.
+Tidak terdapat tanda iskemia akut.
 
-ECHO (today): EF 55%, mild concentric LVH, no wall motion abnormalities. Grade I diastolic dysfunction. Mild aortic valve sclerosis without stenosis.
+EKO (hari ini): Fraksi ejeksi (EF) 55% (dalam batas normal).
+Hipertrofi ventrikel kiri konsentrik ringan.
+Tidak ada kelainan gerakan dinding jantung.
+Disfungsi diastolik derajat I.
+Sklerosis katup aorta ringan tanpa stenosis.
 
-ASSESSMENT: Stable angina pectoris, likely secondary to obstructive coronary artery disease given risk factor burden. Cannot rule out microvascular disease.
+ASESMEN: Angina pektoris stabil, kemungkinan besar disebabkan oleh penyakit arteri koroner obstruktif mengingat banyaknya faktor risiko.
+Penyakit mikrovaskular belum dapat disingkirkan.
 
-PLAN: Nuclear stress test (adenosine perfusion) scheduled 2026-04-08. Initiate aspirin 81mg daily. Add amlodipine 5mg daily for symptomatic relief. Continue statin therapy. Smoking cessation counseling provided. If stress test positive, proceed to coronary angiography.`
+RENCANA: Tes stres nuklir (perfusi dengan adenosin) dijadwalkan pada 08-04-2026
+Memulai aspirin 81 mg setiap hari
+Menambahkan amlodipin 5 mg setiap hari untuk meredakan gejala
+Melanjutkan terapi statin
+Edukasi penghentian merokok telah diberikan
+Jika hasil tes stres positif, akan dilanjutkan ke angiografi koroner untuk evaluasi lebih lanjut.`
   },
   radiology: {
     label: { en: 'Radiology Report', id: 'Laporan Radiologi' },
     icon: '🫁',
-    text: `RADIOLOGY REPORT — CT CHEST WITH CONTRAST
-Patient: Linda Park | Exam Date: 2026-03-29
-Radiologist: Dr. Ahmed Khalil, MD
+    text: `Laporan Radiologi — CT Scan Toraks dengan Kontras
+Pasien: Linda | Tanggal Pemeriksaan: 29-03-2026
+Radiolog: Dr. Pondra Khalil, MD
 
-INDICATION: 62F with productive cough x3 weeks, night sweats, 8lb unintentional weight loss, prior PPD positive.
-
-TECHNIQUE: Axial CT of the chest was performed with IV iodinated contrast. Coronal and sagittal reformations were obtained.
-
-FINDINGS:
-LUNGS: 2.4 cm cavitary lesion with thick irregular walls in the right upper lobe posterior segment. Surrounding ground-glass opacity and satellite nodules consistent with endobronchial spread. Small right upper lobe pleural effusion. Tree-in-bud opacities bilaterally in the upper lobes. Left upper lobe 8mm nodule — mildly FDG avid on prior PET.
-MEDIASTINUM: Enlarged right paratracheal (station 4R) lymph nodes, largest 1.8cm short axis.
-PLEURA: Trace right pleural effusion.
-BONES: No lytic or blastic lesions.
-
-IMPRESSION:
-1. Right upper lobe cavitary mass with surrounding inflammatory/infectious changes highly suspicious for pulmonary tuberculosis. Infectious disease and pulmonology consultation recommended. Isolation precautions advised.
-2. Bilateral lymphadenopathy — reactive vs. secondary involvement.
-3. Left upper lobe 8mm nodule — recommend dedicated follow-up CT in 3 months.`
+INDIKASI: Perempuan usia 62 tahun dengan batuk berdahak selama 3 minggu, keringat malam, penurunan berat badan 8 pon tanpa disengaja, serta riwayat PPD positif sebelumnya.
+TEKNIK: CT scan toraks (dada) aksial dilakukan dengan kontras iodin intravena. Rekonstruksi citra koronal dan sagital juga diperoleh.
+TEMUAN:
+PARU-PARU:
+Terdapat lesi kavitas berukuran 2,4 cm dengan dinding tebal tidak teratur pada lobus atas kanan segmen posterior.
+Terlihat opasitas ground-glass di sekitarnya serta nodul satelit yang konsisten dengan penyebaran endobronkial.
+Terdapat efusi pleura kecil pada lobus atas kanan.
+Terlihat pola tree-in-bud secara bilateral pada lobus atas.
+Pada lobus atas kiri terdapat nodul berukuran 8 mm — menunjukkan peningkatan penyerapan FDG ringan pada PET sebelumnya.
+MEDIASTINUM: Pembesaran kelenjar getah bening paratrakeal kanan (stasiun 4R), terbesar dengan diameter aksis pendek 1,8 cm.
+PLEURA: Efusi pleura kanan minimal.
+TULANG: Tidak ditemukan lesi litik maupun blastik.
+KESIMPULAN: Massa kavitas pada lobus atas kanan dengan perubahan inflamasi/infeksi di sekitarnya sangat mencurigakan ke arah tuberkulosis paru. Disarankan konsultasi dengan spesialis penyakit infeksi dan pulmonologi. Tindakan isolasi dianjurkan.
+Limfadenopati bilateral — kemungkinan reaktif atau keterlibatan sekunder.
+Nodul 8 mm pada lobus atas kiri — disarankan CT scan tindak lanjut khusus dalam 3 bulan.`
   }
 };
 
@@ -249,7 +283,7 @@ Respond ONLY with a valid JSON object (no markdown fences, no preamble):
   ]
 }`;
 
-  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}`, {
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
