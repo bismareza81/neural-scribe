@@ -284,8 +284,10 @@ Respond ONLY with a valid JSON object (no markdown fences, no preamble):
 
   // FIX 1: Correct Gemini model name (gemini-2.0-flash, not gemini-2.5-flash-preview-09-2025)
   // FIX 2: generationConfig to enforce JSON output and reduce hallucinations
+  // Temukan bagian fetch di akhir fungsi analyzeRecord dan ubah baris URL-nya menjadi:
+
   const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=`, // Hapus import.meta.env...
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -297,7 +299,7 @@ Respond ONLY with a valid JSON object (no markdown fences, no preamble):
         ],
         generationConfig: {
           temperature: 0.4,
-          responseMimeType: 'application/json'   // tells Gemini to return pure JSON
+          responseMimeType: 'application/json'
         }
       })
     }
