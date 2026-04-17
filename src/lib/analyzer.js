@@ -73,7 +73,7 @@ TSH: 1,8 mIU/L [0,4–4,0] — NORMAL`
     label: { en: 'Cardiology Note', id: 'Catatan Kardiologi' },
     icon: '❤️',
     text: `Catatan Konsultasi Kardiologi
-Pasien: Supardjo | DOB: 1971-11-05 | MRN: 5820391
+Pasien: Supardjo Hariawan | DOB: 1971-11-05 | MRN: 5820391
 Tanggal: 30-03-2026 | Dokter Penanggung Jawab: Dr. Priya Rajan, MD, FACC
 
 ALASAN KONSULTASI: Evaluasi nyeri dada saat aktivitas (exertional chest pain) dan palpitasi.
