@@ -292,7 +292,7 @@ const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
     throw new Error("API Key tidak ditemukan! Periksa file .env Anda.");
   }
 
-  const model = "gemini-2.0-flash"; 
+  const model = "gemini-3-flash-preview"; // Pastikan ini adalah model yang benar dan tersedia untuk Anda
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
 const res = await fetch(url, {
