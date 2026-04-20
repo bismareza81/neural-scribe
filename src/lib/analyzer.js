@@ -109,7 +109,7 @@ Jika hasil tes stres positif, akan dilanjutkan ke angiografi koroner untuk evalu
     icon: '🫁',
     text: `Laporan Radiologi — CT Scan Toraks dengan Kontras
 Pasien: Linda | Tanggal Pemeriksaan: 29-03-2026
-Radiolog: Dr. Pondra Khalil, MD
+Radiolog: Dr. Ahmad Khalil, MD
 
 INDIKASI: Perempuan usia 62 tahun dengan batuk berdahak selama 3 minggu, keringat malam, penurunan berat badan 8 pon tanpa disengaja, serta riwayat PPD positif sebelumnya.
 TEKNIK: CT scan toraks (dada) aksial dilakukan dengan kontras iodin intravena. Rekonstruksi citra koronal dan sagital juga diperoleh.
