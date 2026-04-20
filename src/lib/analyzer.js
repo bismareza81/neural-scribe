@@ -119,7 +119,7 @@ Terdapat lesi kavitas berukuran 2,4 cm dengan dinding tebal tidak teratur pada l
 Terlihat opasitas ground-glass di sekitarnya serta nodul satelit yang konsisten dengan penyebaran endobronkial.
 Terdapat efusi pleura kecil pada lobus atas kanan.
 Terlihat pola tree-in-bud secara bilateral pada lobus atas.
-Pada lobus atas kiri terdapat nodul berukuran 8 mm — menunjukkan peningkatan penyerapan FDG ringan pada PET sebelumnya.
+Pada lobus atas kiri terdapat nodul berukuran 8 mm menunjukkan peningkatan penyerapan FDG ringan pada PET sebelumnya.
 MEDIASTINUM: Pembesaran kelenjar getah bening paratrakeal kanan (stasiun 4R), terbesar dengan diameter aksis pendek 1,8 cm.
 PLEURA: Efusi pleura kanan minimal.
 TULANG: Tidak ditemukan lesi litik maupun blastik.
@@ -231,7 +231,7 @@ export async function analyzeRecord(input, readLevel, focusArea, lang = 'en') {
       detailed: 'thorough language for a health-literate adult, including relevant medical context and implications'
     },
     id: {
-      simple:   'bahasa yang sangat sederhana dan mudah dipahami oleh anak usia 12 tahun, hindari SEMUA jargon medis dan jelaskan setiap istilah dengan kata-kata sehari-hari',
+      simple:   'bahasa yang sangat sederhana dan mudah dipahami oleh anak usia 12 tahun, hindari SEMUA jargon medis dan jelaskan dengan kata-kata sehari-hari',
       standard: 'bahasa yang jelas untuk orang dewasa terpelajar, jelaskan singkat istilah medis yang diperlukan dalam tanda kurung',
       detailed: 'bahasa yang mendetail untuk orang dewasa yang melek kesehatan, sertakan konteks dan implikasi medis yang relevan'
     }
